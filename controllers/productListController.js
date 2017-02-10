@@ -3,7 +3,7 @@ angular.module("sportsStore")
 .constant("productListActiveClass","btn-primary")
 //分页大小
 .constant("productListPageCount",3)
-.controller("productListCtrl",["$scope","$filter","productListActiveClass","productListPageCount",function($scope,$filter,productListActiveClass,productListPageCount){
+.controller("productListCtrl",["$scope","$filter","productListActiveClass","productListPageCount","cartService",function($scope,$filter,productListActiveClass,productListPageCount,cartService){
 	var selectedCategory = null;
 	$scope.selectedPage = 1;
 	$scope.pageSize = productListPageCount;
@@ -29,5 +29,8 @@ angular.module("sportsStore")
 	$scope.getPageClass = function(page){
 		return $scope.selectedPage == page ? productListActiveClass : "";
 	}
-	
+	//往购物车添加商品
+	$scope.addProductToCart = function(product){
+		cartService.addProduct(product.id,product.name,product.price);
+	}
 }])

@@ -1,0 +1,36 @@
+<style type="text/css">
+	.panel{
+		padding: 20px;
+	}
+</style>
+<section class="panel panel-default row" ng-controller="productListCtrl" ng-hide="data.error">
+	<nav class="col-xs-3">
+		<a ng-click="selectCategory()" class="btn btn-block btn-default" 
+			ng-class="getCategoryClass()">首页</a>
+		<!--先对商品按目录进行排序,然后再返回去重后的目录-->
+		<a ng-repeat="item in data.products | orderBy:'category' | unique:'category'"
+			ng-click="selectCategory(item)" class="btn btn-block btn-default btn-lg" 
+			ng-class="getCategoryClass(item)">{{item}}</a>
+	</nav>
+	<div class="col-xs-8">
+		<!--遍历添加商品-->
+		<div class="well" ng-repeat="item in data.products | filter:categoryFilterFn | range:selectedPage:pageSize">
+			<h3>
+				<strong>{{item.name}}</strong>
+				<!--使用金额过滤器，将数值转换为金额-->
+				<span class="pull-right label label-primary">
+					{{item.price | currency}}
+				</span>
+			</h3>
+			<!--产品选择按钮-->
+			<button class="btn btn-success pull-right" ng-click="addProductToCart(item)">Add to cart</button>
+			<span class="lead">{{item.description }}</span>
+		</div>
+		<div class="pull-right btn-group">
+			<a ng-repeat="page in data.products | filter:categoryFilterFn | pageCount:pageSize"
+				ng-click="selectPage($index + 1)" class="btn btn-default" ng-class="getPageClass($index + 1)">
+				{{$index + 1}}
+			</a>
+		</div>
+	</div>
+</section>
