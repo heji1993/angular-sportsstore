@@ -1,0 +1,7 @@
+<div class="alert alert-danger" ng-show="data.orderError">
+	发生错误{{data.orderError.status}}.订单尚未完成<a href="#/placeorder" class="alert-link">点击这里重试</a>
+</div>
+<div class="well" ng-hide="data.orderError">
+	<h2>已下单！</h2>
+	感谢您使用我们的购物平台，您的订单编号是{{data.orderId}}，我们会尽快将商品派送到您手里。
+</div>

@@ -1,0 +1,23 @@
+<div class="well" ng-controller="authCtrl">
+	<div class="alert alert-info" ng-hide="authenticationError">
+		请输入你的用户名和密码进行登录验证
+	</div>
+	<div class="alert alert-danger" ng-show="authenticationError">
+		验证失败({{authenticationError.status}})。请重新尝试。
+	</div>
+	<form novalidate="novalidate" name="authForm">
+		<div class="form-group">
+			<label for="">用户名</label>
+			<input type="text" name="username" class="form-control" ng-model="username" required="required" />
+		</div>
+		<div class="form-group">
+			<label for="">密码</label>
+			<input type="password" name="password" class="form-control" ng-model="password" required="required" />
+		</div>
+		<div class="text-center">
+			<button class="btn btn-primary" type="submit" ng-disabled="authForm.$invalid" ng-click="authenticate(username,password)">
+				登录
+			</button>
+		</div>
+	</form>
+</div>

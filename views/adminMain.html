@@ -1,0 +1,16 @@
+<div class="panel panel-default row" ng-controller="mainCtrl">
+	<div class="col-xs-3 panel-body">
+		<!--ng-class:如果是一个对象。那么如果某个键所对应的的值是true则该键将会作为一个类名-->
+		<span ng-repeat="item in screens" 
+			class="btn btn-block btn-default"
+			ng-class="{'btn-primary':item == current}"
+			ng-click="setScreen($index);">
+			{{item}}
+		</span>
+	</div>
+	<div class="col-xs-8 panel-body">
+		<div ng-include="getScreen()">
+			
+		</div>
+	</div>
+</div>

@@ -1,0 +1,61 @@
+<style type="text/css">
+	.ng-valid{
+		border-color: lightgreen;
+	}
+	.ng-invalid{
+		border-color: lightpink;
+	}
+	span.error{
+		font-weight: bold;
+		color: red;
+	}
+</style>
+
+<h2>提交订单</h2>
+<p>请输入你的相关信息，我们会直接把你的商品邮寄给你</p>
+<form name="shippingForm" novalidate="">
+	<div class="well">
+		<h3>收件人</h3>
+		<div class="form-group">
+			<label>姓名</label>
+			<input type="text" name="name" class="form-control" ng-model="data.shipping.name" required="required"/>
+			<span class="error" ng-show="shippingForm.name.$error.required">请输入姓名</span>
+		</div>
+		<h3>收货地址</h3>
+		<div class="form-group">
+			<label>街道</label>
+			<input type="text" name="street" class="form-control" ng-model="data.shipping.street" required="required"/>
+			<span class="error" ng-show="shippingForm.street.$error.required">请输入街道地址</span>
+		</div>
+		<div class="form-group">
+			<label>区</label>
+			<input type="text" name="county" class="form-control" ng-model="data.shipping.county" required="required"/>
+			<span class="error" ng-show="shippingForm.county.$error.required">请输入所在区</span>
+		</div>
+		<div class="form-group">
+			<label>市</label>
+			<input type="text" name="city" class="form-control" ng-model="data.shipping.city" required="required"/>
+			<span class="error" ng-show="shippingForm.city.$error.required">请输入所在市</span>
+		</div>
+		<div class="form-group">
+			<label>国家</label>
+			<input type="text" name="country" class="form-control" ng-model="data.shipping.country" required="required"/>
+			<span class="error" ng-show="shippingForm.country.$error.required">请输入所在国家</span>
+		</div>
+		<div class="form-group">
+			<label>邮政编码</label>
+			<input type="text" name="zip" class="form-control" ng-model="data.shipping.zip" required="required"/>
+			<span class="error" ng-show="shippingForm.zip.$error.required">请输入所在市、区</span>
+		</div>
+		<h3>可选</h3>
+		<div class="checkbox">
+			<label>
+				<input type="checkbox" name="giftwarp" ng-model="data.shipping.giftwrap"/>
+				是否礼盒包装
+			</label>
+		</div>
+		<div class="text-center">
+			<button class="btn btn-primary" ng-click="sendOrder(data.shipping);" ng-disabled="shippingForm.$invalid">完成订单</button>
+		</div>
+	</div>
+</form>
